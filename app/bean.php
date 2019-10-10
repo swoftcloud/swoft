@@ -48,7 +48,9 @@ return [
         'setting' => [
             'task_worker_num'       => 12,
             'task_enable_coroutine' => true,
-            'worker_num'            => 6
+            'worker_num'            => 6,
+            'document_root' => __DIR__.'/../resource/dist',
+            'enable_static_handler' => true,
         ]
     ],
     'httpDispatcher'    => [
