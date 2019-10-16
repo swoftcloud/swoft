@@ -6,6 +6,7 @@ use Swoft\Http\Message\Request;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Validator\Annotation\Mapping\Validate;
+use App\Validator\TypeValidator;
 
 /**
  * Class ValidatorController
@@ -24,7 +25,7 @@ class ValidatorController
      *
      * @return array
      */
-    function validateAll(Request $request): array
+    public function validateAll(Request $request): array
     {
         return $request->getParsedBody();
     }
@@ -39,7 +40,7 @@ class ValidatorController
      *
      * @return array
      */
-    function validateType(Request $request): array
+    public function validateType(Request $request): array
     {
         return $request->getParsedBody();
     }
@@ -60,6 +61,33 @@ class ValidatorController
     }
 
     /**
+     *
+     * @RequestMapping()
+     * @Validate(validator="TestValidator", fields={"password"}, type="get")
+     *
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function validatePasswordGet(Request $request): array
+    {
+        return $request->getQueryParams();
+    }
+
+    /**
+     * @RequestMapping()
+     * @Validate(validator=TypeValidator::class)
+     *
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function validateStrictType(Request $request): array
+    {
+        return $request->getParsedBody();
+    }
+
+    /**
      * Customize the validator with userValidator
      *
      * @RequestMapping()
@@ -69,7 +97,7 @@ class ValidatorController
      *
      * @return array
      */
-    function validateCustomer(Request $request): array
+    public function validateCustomer(Request $request): array
     {
         return $request->getParsedBody();
     }
