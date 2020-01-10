@@ -1,5 +1,12 @@
 <?php declare(strict_types=1);
-
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Http\Controller;
 
@@ -25,9 +32,7 @@ class TaskController
      */
     public function getListByCo(): array
     {
-        $data = Task::co('testTask', 'list', [12]);
-
-        return $data;
+        return Task::co('testTask', 'list', [12]);
     }
 
     /**
@@ -105,8 +110,8 @@ class TaskController
     public function syncTask(): array
     {
         $result  = Task::co('sync', 'test', ['name']);
-        $result2 = Task::co('sync', 'testBool', []);
-        $result3 = Task::co('sync', 'testNull', []);
+        $result2 = Task::co('sync', 'testBool');
+        $result3 = Task::co('sync', 'testNull');
 
         $data[] = $result;
         $data[] = $result2;

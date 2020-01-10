@@ -1,10 +1,15 @@
 <?php declare(strict_types=1);
-
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Http\Controller;
 
-use Swoft\Context\Context;
-use Swoft\Http\Message\Response;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 
@@ -20,13 +25,20 @@ class RespController
     /**
      * @RequestMapping()
      *
-     * @return Response
+     * @return array
      */
-    public function cookie(): Response
+    public function ary(): array
     {
-        /** @var Response $resp */
-        $resp = Context::mustGet()->getResponse();
+        return ['ary'];
+    }
 
-        return $resp->setCookie('c-name', 'c-value')->withData(['hello']);
+    /**
+     * @RequestMapping()
+     *
+     * @return string
+     */
+    public function str(): string
+    {
+        return 'string';
     }
 }

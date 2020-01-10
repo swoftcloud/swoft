@@ -1,7 +1,16 @@
 <?php declare(strict_types=1);
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Tcp\Controller;
 
+use App\Tcp\Middleware\DemoMiddleware;
 use Swoft\Tcp\Server\Annotation\Mapping\TcpController;
 use Swoft\Tcp\Server\Annotation\Mapping\TcpMapping;
 use Swoft\Tcp\Server\Request;
@@ -11,7 +20,7 @@ use function strrev;
 /**
  * Class DemoController
  *
- * @TcpController()
+ * @TcpController(middlewares={DemoMiddleware::class})
  */
 class DemoController
 {

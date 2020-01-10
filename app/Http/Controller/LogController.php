@@ -1,10 +1,15 @@
 <?php declare(strict_types=1);
-
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Http\Controller;
 
-use ReflectionException;
-use Swoft\Bean\Exception\ContainerException;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Log\Helper\CLog;
@@ -23,8 +28,6 @@ class LogController
      * @RequestMapping("test")
      *
      * @return array
-     * @throws ReflectionException
-     * @throws ContainerException
      */
     public function test(): array
     {
@@ -59,8 +62,6 @@ class LogController
 
         // Tag2 end
         Log::profileEnd('tagName');
-
-
 
 
         return ['log'];

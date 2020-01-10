@@ -1,10 +1,19 @@
 <?php declare(strict_types=1);
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Http\Controller;
 
 use Swoft\Http\Message\Request;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
+use Swoft\Http\Server\Annotation\Mapping\RequestMethod;
 use Swoft\Validator\Annotation\Mapping\Validate;
 use App\Validator\TypeValidator;
 
@@ -27,6 +36,10 @@ class ValidatorController
      */
     public function validateAll(Request $request): array
     {
+        $method = $request->getMethod();
+        if ($method == RequestMethod::GET) {
+            return $request->getParsedQuery();
+        }
         return $request->getParsedBody();
     }
 
@@ -42,6 +55,10 @@ class ValidatorController
      */
     public function validateType(Request $request): array
     {
+        $method = $request->getMethod();
+        if ($method == RequestMethod::GET) {
+            return $request->getParsedQuery();
+        }
         return $request->getParsedBody();
     }
 
@@ -55,8 +72,12 @@ class ValidatorController
      *
      * @return array
      */
-    function validatePassword(Request $request): array
+    public function validatePassword(Request $request): array
     {
+        $method = $request->getMethod();
+        if ($method == RequestMethod::GET) {
+            return $request->getParsedQuery();
+        }
         return $request->getParsedBody();
     }
 
@@ -91,6 +112,7 @@ class ValidatorController
      * Customize the validator with userValidator
      *
      * @RequestMapping()
+     *
      * @Validate(validator="userValidator")
      *
      * @param Request $request
@@ -99,6 +121,10 @@ class ValidatorController
      */
     public function validateCustomer(Request $request): array
     {
+        $method = $request->getMethod();
+        if ($method == RequestMethod::GET) {
+            return $request->getParsedQuery();
+        }
         return $request->getParsedBody();
     }
 }

@@ -1,5 +1,12 @@
 <?php declare(strict_types=1);
-
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Http\Controller;
 
@@ -11,6 +18,7 @@ use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Redis\Redis;
 use Swoole\Coroutine\Http\Client;
 use Throwable;
+use function random_int;
 
 /**
  * Class CoController
@@ -43,9 +51,7 @@ class CoController
             }
         ];
 
-        $response = Co::multi($requests);
-
-        return $response;
+        return Co::multi($requests);
     }
 
     /**
@@ -65,7 +71,7 @@ class CoController
     public function addUser(): array
     {
         $user = User::new();
-        $user->setAge(mt_rand(1, 100));
+        $user->setAge(random_int(1, 100));
         $user->setUserDesc('desc');
 
         // Save result

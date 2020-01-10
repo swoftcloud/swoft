@@ -27,31 +27,33 @@ Swoft 通过长达三年的积累和方向的探索，把 Swoft 打造成 PHP �
 
 ## 功能特色
 
- - 内置高性能网络服务器（Http/Websocket/RPC）
- - 灵活的组件功能
- - 强大的注解功能
- - 多样化的命令终端（控制台）
- - 强大的面向切面编程（AOP）
- - 容器管理，依赖注入（DI）
- - 灵活的事件机制
- - 基于PSR-7的HTTP消息的实现
- - 基于PSR-14的事件管理
- - 基于PSR-15的中间件
- - 国际化（i18n）支持
- - 简单有效的参数验证器
- - 高性能连接池（Mysql/Redis/RPC），自动重新连接
- - 数据库高度兼容Laravel的使用方式
- - Redis高度兼容Laravel的使用方式
- - 高效的任务处理
- - 灵活的异常处理
- - 强大的日志系统
- - 服务注册与发现
- - 配置中心
- - 服务限流
- - 服务降级
- - 服务熔断
- - Apollo
- - Consul
+ - 内置高性能网络服务器（Http/Websocket/RPC/TCP）
+- 灵活的组件功能
+- 强大的注解功能
+- 多样化的命令终端（控制台）
+- 强大的面向切面编程（AOP）
+- 容器管理，依赖注入（DI）
+- 灵活的事件机制
+- 基于PSR-7的HTTP消息的实现
+- 基于PSR-14的事件管理
+- 基于PSR-15的中间件
+- 国际化（i18n）支持
+- 简单有效的参数验证器
+- 高性能连接池（Mysql/Redis/RPC），自动重新连接
+- 数据库高度兼容Laravel的使用方式
+- Redis高度兼容Laravel的使用方式
+- 秒级定时任务
+- 进程池
+- 高效的任务处理
+- 灵活的异常处理
+- 强大的日志系统
+- 服务注册与发现
+- 配置中心
+- 服务限流
+- 服务降级
+- 服务熔断
+- Apollo
+- Consul
 
 ## 在线文档
 
@@ -63,6 +65,10 @@ Swoft 通过长达三年的积累和方向的探索，把 Swoft 打造成 PHP �
 - QQ Group1: 548173319      
 - QQ Group2: 778656850
 - [swoft-cloud/community](https://gitter.im/swoft-cloud/community)
+
+## 免费技术支持
+
+![support](https://www.swoft.org/src/images/technical-support.png)
 
 ## Requirement
 
@@ -97,6 +103,51 @@ composer create-project swoft/swoft swoft
 ```bash
 [root@swoft swoft]# php bin/swoft rpc:start
 ```
+
+## 核心组件
+
+Component Name   | Packagist Version
+--------------------|---------------------
+swoft-annotation          |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/annotation.svg)](https://packagist.org/packages/swoft/annotation)
+swoft-config              |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/config.svg)](https://packagist.org/packages/swoft/config)
+swoft-db                  |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/db.svg)](https://packagist.org/packages/swoft/db)
+swoft-framework           |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/framework.svg)](https://packagist.org/packages/swoft/framework)
+swoft-i18n                |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/i18n.svg)](https://packagist.org/packages/swoft/i18n)
+swoft-proxy               |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/proxy.svg)](https://packagist.org/packages/swoft/proxy)
+swoft-rpc-client          |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/rpc-client.svg)](https://packagist.org/packages/swoft/rpc-client)
+swoft-stdlib              |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/stdlib.svg)](https://packagist.org/packages/swoft/stdlib)
+swoft-tcp-server          |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/tcp-server.svg)](https://packagist.org/packages/swoft/tcp-server)
+swoft-aop                 |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/aop.svg)](https://packagist.org/packages/swoft/aop)
+swoft-connection-pool     |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/connection-pool.svg)](https://packagist.org/packages/swoft/connection-pool)
+swoft-error               |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/error.svg)](https://packagist.org/packages/swoft/error)
+swoft-http-message        |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/http-message.svg)](https://packagist.org/packages/swoft/http-message)
+swoft-log                 |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/log.svg)](https://packagist.org/packages/swoft/log)
+swoft-redis               |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/redis.svg)](https://packagist.org/packages/swoft/redis)
+swoft-rpc-server          |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/rpc-server.svg)](https://packagist.org/packages/swoft/rpc-server)
+swoft-task                |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/task.svg)](https://packagist.org/packages/swoft/task)
+swoft-validator           |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/validator.svg)](https://packagist.org/packages/swoft/validator)
+swoft-bean                |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/bean.svg)](https://packagist.org/packages/swoft/bean)
+swoft-console             |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/console.svg)](https://packagist.org/packages/swoft/console)
+swoft-event               |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/event.svg)](https://packagist.org/packages/swoft/event)
+swoft-http-server         |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/http-server.svg)](https://packagist.org/packages/swoft/http-server)
+swoft-process             |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/process.svg)](https://packagist.org/packages/swoft/process)
+swoft-rpc                 |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/rpc.svg)](https://packagist.org/packages/swoft/rpc)
+swoft-server              |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/server.svg)](https://packagist.org/packages/swoft/server)
+swoft-tcp                 |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/tcp.svg)](https://packagist.org/packages/swoft/tcp)
+swoft-websocket-server    |   [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/websocket-server.svg)](https://packagist.org/packages/swoft/websocket-server)
+
+## 扩展组件
+
+Component Name   | Packagist Version
+-----------------|---------------------
+swoft-apollo  | [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/apollo.svg)](https://packagist.org/packages/swoft/apollo)
+swoft-breaker | [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/breaker.svg)](https://packagist.org/packages/swoft/breaker)
+swoft-crontab | [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/crontab.svg)](https://packagist.org/packages/swoft/crontab)
+swoft-consul  | [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/consul.svg)](https://packagist.org/packages/swoft/consul)
+swoft-limiter | [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/limiter.svg)](https://packagist.org/packages/swoft/limiter)
+swoft-view    | [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/view.svg)](https://packagist.org/packages/swoft/view)
+swoft-whoops  | [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/whoops.svg)](https://packagist.org/packages/swoft/whoops)
+swoft-session  | [![Latest Stable Version](http://img.shields.io/packagist/v/swoft/session.svg)](https://packagist.org/packages/swoft/session)
 
 ## License
 

@@ -1,9 +1,15 @@
 <?php declare(strict_types=1);
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Exception\Handler;
 
-use ReflectionException;
-use Swoft\Bean\Exception\ContainerException;
 use Swoft\Error\Annotation\Mapping\ExceptionHandler;
 use Swoft\Http\Message\Response;
 use Swoft\WebSocket\Server\Exception\Handler\AbstractHandshakeErrorHandler;
@@ -24,15 +30,16 @@ class WsHandshakeExceptionHandler extends AbstractHandshakeErrorHandler
      * @param Response  $response
      *
      * @return Response
-     * @throws ReflectionException
-     * @throws ContainerException
      */
     public function handle(Throwable $e, Response $response): Response
     {
         // Debug is false
         if (!APP_DEBUG) {
             return $response->withStatus(500)->withContent(sprintf(
-                '%s At %s line %d', $e->getMessage(), $e->getFile(), $e->getLine()
+                '%s At %s line %d',
+                $e->getMessage(),
+                $e->getFile(),
+                $e->getLine()
             ));
         }
 

@@ -1,5 +1,12 @@
 <?php declare(strict_types=1);
-
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Listener;
 
@@ -27,12 +34,10 @@ class UserSavingListener implements EventHandlerInterface
         $user = $event->getTarget();
 
         /**
-            if ($user->getAge() > 100) {
-            // stopping saving
-            $event->stopPropagation(true);
-
-            $user->setAdd(100);
-            }
+         * if ($user->getAge() > 100) {
+         * // stopping saving
+         * $event->stopPropagation(true);
+         * }
          */
     }
 }

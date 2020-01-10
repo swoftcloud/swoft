@@ -1,16 +1,23 @@
 <?php declare(strict_types=1);
-
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Http\Controller;
 
-use Exception;
-use function sgo;
+use RuntimeException;
 use Swoft\Bean\Annotation\Mapping\Inject;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Redis\Exception\RedisException;
 use Swoft\Redis\Pool;
 use Swoft\Redis\Redis;
+use function sgo;
 
 /**
  * Class RedisController
@@ -20,7 +27,6 @@ use Swoft\Redis\Redis;
  */
 class RedisController
 {
-
     /**
      * @Inject()
      *
@@ -54,20 +60,19 @@ class RedisController
      */
     public function set(): array
     {
-        $key   = 'key';
-        $value = uniqid();
+        $key = 'key1';
 
-        $this->redis->zAdd($key, [
+        $data = [
             'add'    => 11.1,
             'score2' => 11.1,
             'score3' => 11.21
-        ]);
+        ];
+        $this->redis->zAdd($key, $data);
 
-        $get = $this->redis->sMembers($key);
+        $res = Redis::zRangeByScore($key, '11.1', '11.21', ['withscores' => true]);
 
-        return [$get, $value];
+        return [$res, $res === $data];
     }
-
 
     /**
      * @RequestMapping("str")
@@ -124,12 +129,12 @@ class RedisController
     {
         sgo(function () {
             Redis::pipeline(function () {
-                throw new Exception('');
+                throw new RuntimeException('');
             });
         });
 
         Redis::pipeline(function () {
-            throw new Exception('');
+            throw new RuntimeException('');
         });
 
         return ['exPipeline'];
@@ -146,12 +151,12 @@ class RedisController
     {
         sgo(function () {
             Redis::transaction(function () {
-                throw new Exception('');
+                throw new RuntimeException('');
             });
         });
 
         Redis::transaction(function () {
-            throw new Exception('');
+            throw new RuntimeException('');
         });
 
         return ['exPipeline'];

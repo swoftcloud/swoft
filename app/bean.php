@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 use App\Common\DbSelector;
 use App\Process\MonitorProcess;
 use Swoft\Crontab\Process\CrontabProcess;
@@ -57,6 +64,7 @@ return [
         // Add global http middleware
         'middlewares'      => [
             \App\Http\Middleware\FavIconMiddleware::class,
+            \Swoft\Http\Session\SessionMiddleware::class,
             // \Swoft\Whoops\WhoopsMiddleware::class,
             // Allow use @View tag
             \Swoft\View\Middleware\ViewMiddleware::class,
@@ -70,6 +78,7 @@ return [
         'dsn'      => 'mysql:dbname=test;host=127.0.0.1',
         'username' => 'root',
         'password' => 'swoft123456',
+        'charset' => 'utf8mb4',
     ],
     'db2'               => [
         'class'      => Database::class,
@@ -93,7 +102,7 @@ return [
         'database' => bean('db3')
     ],
     'migrationManager'  => [
-        'migrationPath' => '@app/Migration',
+        'migrationPath' => '@database/Migration',
     ],
     'redis'             => [
         'class'    => RedisDb::class,
@@ -126,6 +135,10 @@ return [
     'wsServer'          => [
         'class'   => WebSocketServer::class,
         'port'    => 18308,
+        'listener' => [
+            // 'rpc' => bean('rpcServer'),
+            // 'tcp' => bean('tcpServer'),
+        ],
         'on'      => [
             // Enable http handle
             SwooleEvent::REQUEST => bean(RequestListener::class),
@@ -137,15 +150,28 @@ return [
             'log_file' => alias('@runtime/swoole.log'),
         ],
     ],
+    /** @see \Swoft\WebSocket\Server\WsMessageDispatcher */
+    'wsMsgDispatcher' => [
+        'middlewares' => [
+            \App\WebSocket\Middleware\GlobalWsMiddleware::class
+        ],
+    ],
+    /** @see \Swoft\Tcp\Server\TcpServer */
     'tcpServer'         => [
         'port'  => 18309,
         'debug' => 1,
     ],
     /** @see \Swoft\Tcp\Protocol */
     'tcpServerProtocol' => [
-        // 'type'            => \Swoft\Tcp\Packer\JsonPacker::TYPE,
+        // 'type' => \Swoft\Tcp\Packer\JsonPacker::TYPE,
         'type' => \Swoft\Tcp\Packer\SimpleTokenPacker::TYPE,
         // 'openLengthCheck' => true,
+    ],
+    /** @see \Swoft\Tcp\Server\TcpDispatcher */
+    'tcpDispatcher' => [
+        'middlewares' => [
+            \App\Tcp\Middleware\GlobalTcpMiddleware::class
+        ],
     ],
     'cliRouter'         => [
         // 'disabledGroups' => ['demo', 'test'],

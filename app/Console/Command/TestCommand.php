@@ -1,4 +1,12 @@
 <?php declare(strict_types=1);
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Console\Command;
 
@@ -23,7 +31,7 @@ class TestCommand
     /**
      * @CommandMapping(name="ab")
      */
-    public function ab()
+    public function ab(): void
     {
         $type = input()->get('type', '');
         $uris = $this->uris();
@@ -32,6 +40,7 @@ class TestCommand
         if (empty($type)) {
             $exeUris = [];
             foreach ($uris as $name => $uriAry) {
+                /** @noinspection SlowArrayOperationsInLoopInspection */
                 $exeUris = array_merge($exeUris, $uriAry);
             }
         } else {
@@ -83,6 +92,7 @@ class TestCommand
                 '/dbModel/delete',
                 '/dbModel/save',
                 '/dbModel/batchUpdate',
+                '/dbModel/propWhere',
                 '/selectDb/modelNotExistDb',
                 '/selectDb/queryNotExistDb',
                 '/selectDb/dbNotExistDb',
@@ -90,7 +100,7 @@ class TestCommand
                 '/selectDb/queryDb',
                 '/selectDb/dbDb',
                 '/selectDb/select',
-                '/builder/schema'
+                '/builder/schema',
             ],
             'task'    => [
                 '/task/getListByCo',

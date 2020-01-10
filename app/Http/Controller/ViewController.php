@@ -1,10 +1,15 @@
 <?php declare(strict_types=1);
-
+/**
+ * This file is part of Swoft.
+ *
+ * @link     https://swoft.org
+ * @document https://swoft.org/docs
+ * @contact  group@swoft.org
+ * @license  https://github.com/swoft-cloud/swoft/blob/master/LICENSE
+ */
 
 namespace App\Http\Controller;
 
-use ReflectionException;
-use Swoft\Bean\Exception\ContainerException;
 use Swoft\Http\Message\ContentType;
 use Swoft\Http\Message\Response;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
@@ -27,8 +32,6 @@ class ViewController
      * @param Response $response
      *
      * @return Response
-     * @throws ReflectionException
-     * @throws ContainerException
      */
     public function index(Response $response): Response
     {
@@ -50,25 +53,5 @@ class ViewController
         return [
             'msg' => 'hello'
         ];
-    }
-
-    /**
-     * @RequestMapping()
-     *
-     * @return array
-     */
-    public function ary(): array
-    {
-        return ['ary'];
-    }
-
-    /**
-     * @RequestMapping()
-     *
-     * @return string
-     */
-    public function str(): string
-    {
-        return 'string';
     }
 }
